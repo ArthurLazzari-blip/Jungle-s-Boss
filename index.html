@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle's Boss</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+</head>
+<body>
+
+    <div id="game-container"></div>
+
+    <!-- INÍCIO -->
+    <div id="screen-start" class="overlay-screen active">
+        <div class="card-modal">
+            <h1 class="title">JUNGLE'S BOSS</h1>
+            <p class="subtitle">Ajude a selva coletando todas as bananas roubadas e derrotando o Monkeyko!</p>
+            <div class="btn-group">
+                <button class="btn btn-first" onclick="startGame()">📗 MODO HISTÓRIA 📗</button>
+                <button class="btn btn-second" onclick="startFreeMode()" >🍌 MODO LIVRE 🍌</button>
+                <button class="btn btn-third" onclick="showScreen('screen-instructions')">⚙ INSTRUÇÕES ⚙</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSTRUÇÕES -->
+    <div id="screen-instructions" class="overlay-screen">
+        <div class="card-modal">
+            <h2>COMO JOGAR</h2>
+            <div class="instructions-content">
+                <p>❔ <strong>Objetivo:</strong> Colete todas as frutas para liberar a porta. No <strong>Modo Livre</strong>, colete o máximo que puder sem morrer!</p>
+                <div class="controls-grid">
+                    <div><span class="key">←</span> <span class="key">→</span> Mover</div>
+                    <div><span class="key">↑</span> Pular</div>
+                </div>
+            </div>
+            <button class="btn btn-third" onclick="showScreen('screen-start')">⬅ VOLTAR</button>
+        </div>
+    </div>
+
+    <!-- VITÓRIA -->
+    <div id="screen-victory" class="overlay-screen">
+        <div class="card-modal">
+            <h1 class="title victory-title">🏆 PARABÉNS! 🏆</h1>
+            <p class="subtitle">Você concluiu todas as fases e salvou a selva!</p>
+            <div class="btn-group">
+                <button class="btn btn-first" onclick="restartGame()">🔄 JOGAR NOVAMENTE 🔄</button>
+                <button class="btn btn-second" onclick="startFreeMode()" >🍌 MODO LIVRE 🍌</button>
+                <button class="btn btn-third" onclick="showScreen('screen-start')">🏠 MENU INICIAL 🏠</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DERROTA -->
+    <div id="screen-gameover" class="overlay-screen">
+        <div class="card-modal">
+            <h1 class="title gameover-title">💀 GAME OVER 💀</h1>
+            <p class="subtitle" id="gameover-subtitle">Suas vidas acabaram! Quer tentar novamente?</p>
+            <div class="btn-group">
+                <button class="btn btn-first" onclick="restartGame()">🔄 JOGAR NOVAMENTE 🔄</button>
+                <button class="btn btn-second" onclick="startFreeMode()" >🍌 MODO LIVRE 🍌</button>
+                <button class="btn btn-third" onclick="showScreen('screen-start')">🏠 MENU INICIAL 🏠</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARQUIVOS -->
+    <script src="level1.js"></script>
+    <script src="level2.js"></script>
+    <script src="level3.js"></script>
+    <script src="level4.js"></script>
+    <script src="levels.js"></script>
+    <script src="freemode.js"></script>
+    <script src="game.js"></script>
+
+    <!-- NAVEGAÇÃO -->
+    <script>
+        function showScreen(screenId) {
+            document.querySelectorAll('.overlay-screen').forEach(el => el.classList.remove('active'));
+            if (screenId) {
+                document.getElementById(screenId).classList.add('active');
+            }
+        }
+
+        function startGame() {
+            showScreen(null);
+            if (window.phaserGame) {
+                window.phaserGame.scene.stop('MenuScene');
+                window.phaserGame.scene.start('GameScene', { levelIndex: 0, lives: 5, isFreeMode: false });
+            }
+        }
+
+        function startFreeMode() {
+            showScreen(null);
+            if (window.phaserGame) {
+                window.phaserGame.scene.stop('MenuScene');
+                window.phaserGame.scene.start('GameScene', { isFreeMode: true });
+            }
+        }
+
+        function restartGame() {
+            startGame();
+        }
+
+        function showVictoryScreen() {
+            showScreen('screen-victory');
+        }
+
+        function showGameOverScreen(score) {
+            let sub = document.getElementById('gameover-subtitle');
+            if (score !== undefined) {
+                sub.innerText = "Você coletou " + score + " bananas no Modo Livre!";
+            } else {
+                sub.innerText = "Suas vidas acabaram! Quer tentar novamente?";
+            }
+            showScreen('screen-gameover');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #121214;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Container do Phaser */
+#game-container {
+    width: 800px;
+    height: 600px;
+    box-shadow: 0 0 30px rgb(0, 255, 0);
+    overflow: hidden;
+}
+
+/* Camadas sobrepostas (Screens) */
+.overlay-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: rgba(60, 100, 60);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.overlay-screen.active {
+    display: flex;
+}
+
+/* Card centralizado */
+.card-modal {
+    background: rgb(60, 60, 60);
+    border: 2px solid rgb(0, 255, 0);
+    border-radius: 25px;
+    padding: 30px 40px;
+    width: 500px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.title {
+    font-size: 36px;
+    margin: 0 0 10px 0;
+    color: rgb(0, 255, 0);
+    text-shadow: 0 0 10px rgb(0, 255, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.victory-title {
+    color: rgb(255, 200, 0);
+    text-shadow: 0 0 10px rgba(255, 200, 0, 0.5);
+}
+
+.gameover-title {
+    color: rgb(255, 50, 50);
+    text-shadow: 0 0 10px rgba(255, 50, 50, 0.5);
+}
+
+.subtitle {
+    font-size: 15px;
+    color: rgb(200, 200, 200);
+    margin-bottom: 25px;
+}
+
+/* Botões */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-first {
+    background: rgb(0, 150, 0);
+    color: #fff;
+}
+
+.btn-first:hover {
+    background: rgb(0, 200, 0);
+    transform: translateY(-2px);
+}
+
+.btn-second {
+    background: rgb(200, 150, 0);
+    color: #fff;
+}
+
+.btn-second:hover {
+    background: rgb(200, 200, 0);
+    transform: translateY(-2px);
+}
+
+.btn-third {
+    background: rgb(0, 50, 0);
+    color: #ddd;
+}
+
+.btn-third:hover {
+    background: rgb(0, 100, 0);
+    transform: translateY(-2px);
+}
+
+/* Detalhes de Conteúdo */
+.instructions-content, .credits-content {
+    text-align: left;
+    background: #151518;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.controls-grid {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.key {
+    background: #333;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    font-family: monospace;
+    font-weight: bold;
+    color: rgb(0, 255, 0);
+}
