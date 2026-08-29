@@ -3,8 +3,8 @@
 Jogo web 2D de plataforma desenvolvido em HTML5 e JavaScript utilizando Phaser 3.
 
 ##Integrantes do Grupo
-- Integrante 1: Arthur
-- Integrante 2: Leonardo
+- Arthur Lazzari
+- Leonardo
 
 ##Descricao do Jogo
 Em Jungle's Boss, o jogador controla um explorador que deve percorrer os cenários, coletar bananas com gravidade e quique, desviar de obstáculos de fogo animado e derrotar o chefão Monkeyko.
